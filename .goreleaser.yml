@@ -2,6 +2,7 @@
 # Make sure to check the documentation at http://goreleaser.com
 env:
   - CGO_ENABLED=0
+  - API_VERSION=x5.0
 before:
   hooks:
     - go mod download
@@ -23,7 +24,7 @@ builds:
       - linux
     goarch:
       - amd64
-    binary: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    binary: '{{ .ProjectName }}_v{{ .Version }}_{{ .Env.API_VERSION }}_{{ .Os }}_{{ .Arch }}'
   -
     mod_timestamp: '{{ .CommitTimestamp }}'
     flags:
@@ -45,10 +46,10 @@ builds:
         goarch: '386'
       - goos: linux
         goarch: amd64
-    binary: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    binary: '{{ .ProjectName }}_v{{ .Version }}_{{ .Env.API_VERSION }}_{{ .Os }}_{{ .Arch }}'
 archives:
   - format: zip
-    name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    name_template: '{{ .ProjectName }}_v{{ .Version }}_{{ .Env.API_VERSION }}_{{ .Os }}_{{ .Arch }}'
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
   algorithm: sha256
