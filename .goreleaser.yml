@@ -23,7 +23,7 @@ builds:
       - linux
     goarch:
       - amd64
-    binary: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    binary: '{{ .ProjectName }}'
   -
     mod_timestamp: '{{ .CommitTimestamp }}'
     flags:
